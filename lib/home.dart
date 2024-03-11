@@ -9,6 +9,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  double X = 0;
+
+  void moveLeft() {
+
+  }
+
+  void moveRight() {
+
+  }
+
+  void fireMissle() {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -23,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                   ClipRRect(
                     borderRadius: BorderRadius.circular(24),
                     child: Container(
-                      alignment: Alignment(0, 1),
+                      alignment: Alignment(X, 1),
                       child: Container(
                         color: Colors.pink,
                         height: 50,
