@@ -15,12 +15,17 @@ class _HomePageState extends State<HomePage> {
         Expanded(
           flex: 3,
           child: Container(
-            color: Colors.blue[300],
+            color: Colors.blue[100],
           ),
         ),
         Expanded(
           child: Container(
             color: Colors.brown[400],
+            child: Row(
+              children: [
+                
+              ],
+            ),
           ),
         ),
       ],
