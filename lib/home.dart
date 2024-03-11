@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bubble_trouble/button.dart';
+import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,31 +21,31 @@ class _HomePageState extends State<HomePage> {
   double mH = 10;
 
   void moveLeft() {
-    mX = X;
     setState(() {
       if (X -0.1 < -1) {
 
       } else {
         X -= 0.1;
       }
+      mX = X;
     });
   }
 
   void moveRight() {
     setState(() {
-      mX = X;
       if (X +0.1 > 1) {
 
       } else {
         X += 0.1;
       }
+      mX = X;
     });
   }
 
-  void fireMissle() {
+  void fireMissile() {
     Timer.periodic(Duration(milliseconds: 20), (timer){
       if (mH > MediaQuery.of(context).size.height * 3/4) {
-        resetMissle();
+        resetMissile();
         timer.cancel();
       } else {
         setState(() {
@@ -52,6 +53,11 @@ class _HomePageState extends State<HomePage> {
         });
       }
     });
+  }
+
+  void resetMissile () {
+    mX = X;
+    mH = 10;
   }
 
   @override
@@ -66,7 +72,7 @@ class _HomePageState extends State<HomePage> {
           moveRight();
         }
         if (event.isKeyPressed(LogicalKeyboardKey.space)) {
-          fireMissle();
+          fireMissile();
         }
         
       },
@@ -79,14 +85,7 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    Container(
-                      alignment: Alignment(mX, mY),
-                      child: Container(
-                        width: 2,
-                        height: mH,
-                        color: Colors.brown[300],
-                      ),
-                    ),
+                    MyMissile(),
                     MyPlayer(
                       X: X,
                     ),
@@ -107,7 +106,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MyButton(
                     icon: Icons.arrow_upward,
-                    function: fireMissle,
+                    function: fireMissile,
                   ),
                   MyButton(
                     icon: Icons.arrow_forward,
