@@ -40,7 +40,9 @@ class _HomePageState extends State<HomePage> {
             child: Center(
               child: Stack(
                 children: [
-                  MyPlayer(),
+                  MyPlayer(
+                    X: X,
+                  ),
                 ],
               ),
             ),
