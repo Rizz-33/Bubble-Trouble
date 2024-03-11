@@ -16,13 +16,21 @@ class _HomePageState extends State<HomePage> {
 
   void moveLeft() {
     setState(() {
-      X -= 0.1;
+      if (X -0.1 < -1) {
+
+      } else {
+        X -= 0.1;
+      }
     });
   }
 
   void moveRight() {
     setState(() {
-      X += 0.1;
+      if (X +0.1 > 1) {
+
+      } else {
+        X += 0.1;
+      }
     });
   }
 
