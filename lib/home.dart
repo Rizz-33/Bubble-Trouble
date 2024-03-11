@@ -9,6 +9,21 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  double X = 0;
+
+  void moveLeft() {
+
+  }
+
+  void moveRight() {
+
+  }
+
+  void fireMissle() {
+    
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -17,6 +32,23 @@ class _HomePageState extends State<HomePage> {
           flex: 3,
           child: Container(
             color: Colors.blue[100],
+            child: Center(
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(24),
+                    child: Container(
+                      alignment: Alignment(X, 1),
+                      child: Container(
+                        color: Colors.pink,
+                        height: 50,
+                        width: 50,
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
           ),
         ),
         Expanded(
