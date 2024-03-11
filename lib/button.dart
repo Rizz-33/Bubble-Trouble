@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class MyButton extends StatelessWidget {
   final icon;
-  
+
   const MyButton({this.icon});
 
   @override
@@ -13,7 +13,7 @@ class MyButton extends StatelessWidget {
         color: Colors.brown,
         width: 50,
         height: 50,
-        child: Center(child: Icon(Icons.arrow_back, color: Colors.white,)),
+        child: Center(child: Icon(icon, color: Colors.white,)),
       ),
     );
   }

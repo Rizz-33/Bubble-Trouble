@@ -25,9 +25,15 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                MyButton(),
-                MyButton(),
-                MyButton(),
+                MyButton(
+                  icon: Icons.arrow_back,
+                ),
+                MyButton(
+                  icon: Icons.arrow_upward,
+                ),
+                MyButton(
+                  icon: Icons.arrow_forward,
+                ),
               ],
             ),
           ),
