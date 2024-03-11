@@ -21,7 +21,7 @@ class _HomePageState extends State<HomePage> {
               child: Stack(
                 children: [
                   Container(
-                    alignment: Alignment(1, 0),
+                    alignment: Alignment(0, 1),
                     child: Container(
                       color: Colors.pink,
                       height: 50,
