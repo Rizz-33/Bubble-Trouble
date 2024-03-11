@@ -20,6 +20,7 @@ class _HomePageState extends State<HomePage> {
   double mH = 10;
 
   void moveLeft() {
+    mX = X;
     setState(() {
       if (X -0.1 < -1) {
 
@@ -31,6 +32,7 @@ class _HomePageState extends State<HomePage> {
 
   void moveRight() {
     setState(() {
+      mX = X;
       if (X +0.1 > 1) {
 
       } else {
