@@ -17,6 +17,7 @@ class _HomePageState extends State<HomePage> {
   double X = 0;
   double mX = 0;
   double mY = 1;
+  double mH = 10;
 
   void moveLeft() {
     setState(() {
@@ -71,17 +72,17 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    MyPlayer(
-                      X: X,
-                    ),
                     Container(
                       alignment: Alignment(mX, mY),
                       child: Container(
                         width: 30,
-                        height: 30,
+                        height: mH,
                         color: Colors.red,
                       ),
-                    )
+                    ),
+                    MyPlayer(
+                      X: X,
+                    ),
                   ],
                 ),
               ),
