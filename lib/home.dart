@@ -52,6 +52,7 @@ class _HomePageState extends State<HomePage> {
         if (mH > MediaQuery.of(context).size.height * 3/4) {
           resetMissile();
           timer.cancel();
+          midShot = false;
         }
       });
     }
