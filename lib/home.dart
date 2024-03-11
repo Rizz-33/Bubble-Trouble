@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bubble_trouble/button.dart';
+import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,14 +85,7 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    Container(
-                      alignment: Alignment(mX, mY),
-                      child: Container(
-                        width: 2,
-                        height: mH,
-                        color: Colors.brown[300],
-                      ),
-                    ),
+                    MyMissile(),
                     MyPlayer(
                       X: X,
                     ),
