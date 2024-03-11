@@ -41,10 +41,10 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void fireMissle() {
+  void fireMissile() {
     Timer.periodic(Duration(milliseconds: 20), (timer){
       if (mH > MediaQuery.of(context).size.height * 3/4) {
-        resetMissle();
+        resetMissile();
         timer.cancel();
       } else {
         setState(() {
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void resetMissle () {
+  void resetMissile () {
     mX = X;
     mH = 10;
   }
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
           moveRight();
         }
         if (event.isKeyPressed(LogicalKeyboardKey.space)) {
-          fireMissle();
+          fireMissile();
         }
         
       },
@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   MyButton(
                     icon: Icons.arrow_upward,
-                    function: fireMissle,
+                    function: fireMissile,
                   ),
                   MyButton(
                     icon: Icons.arrow_forward,
