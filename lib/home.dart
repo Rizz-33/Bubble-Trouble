@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   static double X = 0;
   double mX = X;
-  double mY = 1;
   double mH = 10;
+  bool midShot = false;
 
   void moveLeft() {
     setState(() {
@@ -43,16 +43,18 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fireMissile() {
-    Timer.periodic(Duration(milliseconds: 20), (timer){
-      if (mH > MediaQuery.of(context).size.height * 3/4) {
-        resetMissile();
-        timer.cancel();
-      } else {
-        setState(() {
-          mH += 10;
-        });
-      }
-    });
+    if (midShot == false) {
+      Timer.periodic(Duration(milliseconds: 20), (timer){
+        if (mH > MediaQuery.of(context).size.height * 3/4) {
+          resetMissile();
+          timer.cancel();
+        } else {
+          setState(() {
+            mH += 10;
+          });
+        }
+      });
+    }
   }
 
   void resetMissile () {
