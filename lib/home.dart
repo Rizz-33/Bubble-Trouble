@@ -14,11 +14,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  double X = 0;
-  double mX = 0;
+  static double X = 0;
+  double mX = X;
   double mY = 1;
+  double mH = 10;
 
   void moveLeft() {
+    mX = X;
     setState(() {
       if (X -0.1 < -1) {
 
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
 
   void moveRight() {
     setState(() {
+      mX = X;
       if (X +0.1 > 1) {
 
       } else {
@@ -39,10 +42,15 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fireMissle() {
-    Timer.periodic(Duration(milliseconds: 100), (timer){
-      setState(() {
-        mY -= 0.1;
-      });
+    Timer.periodic(Duration(milliseconds: 20), (timer){
+      if (mH > MediaQuery.of(context).size.height * 3/4) {
+        resetMissle();
+        timer.cancel();
+      } else {
+        setState(() {
+          mH += 10;
+        });
+      }
     });
   }
 
@@ -71,17 +79,17 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    MyPlayer(
-                      X: X,
-                    ),
                     Container(
                       alignment: Alignment(mX, mY),
                       child: Container(
-                        width: 30,
-                        height: 30,
-                        color: Colors.red,
+                        width: 2,
+                        height: mH,
+                        color: Colors.brown[300],
                       ),
-                    )
+                    ),
+                    MyPlayer(
+                      X: X,
+                    ),
                   ],
                 ),
               ),
