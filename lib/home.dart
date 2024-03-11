@@ -19,6 +19,8 @@ class _HomePageState extends State<HomePage> {
   double mX = X;
   double mH = 10;
   bool midShot = false;
+  double bX = 0.5;
+  double bY = 0;
 
   void moveLeft() {
     setState(() {
