@@ -1,4 +1,5 @@
 import 'package:bubble_trouble/button.dart';
+import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -39,17 +40,7 @@ class _HomePageState extends State<HomePage> {
             child: Center(
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Container(
-                      alignment: Alignment(X, 1),
-                      child: Container(
-                        color: Colors.pink,
-                        height: 50,
-                        width: 50,
-                      ),
-                    ),
-                  )
+                  MyPlayer(),
                 ],
               ),
             ),
