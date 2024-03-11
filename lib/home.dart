@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bubble_trouble/button.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
 
   double X = 0;
+  double mX = 0;
+  double mY = 0;
 
   void moveLeft() {
     setState(() {
@@ -35,7 +39,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fireMissle() {
+    Timer.periodic(Duration(milliseconds: 100), (timer){
 
+    });
   }
 
   @override
@@ -66,6 +72,14 @@ class _HomePageState extends State<HomePage> {
                     MyPlayer(
                       X: X,
                     ),
+                    Container(
+                      alignment: Alignment(mX, mY),
+                      child: Container(
+                        width: 30,
+                        height: 30,
+                        color: Colors.red,
+                      ),
+                    )
                   ],
                 ),
               ),
