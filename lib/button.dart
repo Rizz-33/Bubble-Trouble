@@ -5,11 +5,14 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.brown,
-      width: 50,
-      height: 50,
-      child: Text("data"),
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(16),
+      child: Container(
+        color: Colors.brown,
+        width: 50,
+        height: 50,
+        child: Center(child: Icon(Icons.arrow_back, color: Colors.white,)),
+      ),
     );
   }
 }
