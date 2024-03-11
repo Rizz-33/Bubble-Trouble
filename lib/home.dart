@@ -1,4 +1,5 @@
 import 'package:bubble_trouble/button.dart';
+import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,15 +14,19 @@ class _HomePageState extends State<HomePage> {
   double X = 0;
 
   void moveLeft() {
-
+    setState(() {
+      X -= 0.1;
+    });
   }
 
   void moveRight() {
-
+    setState(() {
+      X += 0.1;
+    });
   }
 
   void fireMissle() {
-    
+
   }
 
   @override
@@ -35,17 +40,9 @@ class _HomePageState extends State<HomePage> {
             child: Center(
               child: Stack(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(24),
-                    child: Container(
-                      alignment: Alignment(X, 1),
-                      child: Container(
-                        color: Colors.pink,
-                        height: 50,
-                        width: 50,
-                      ),
-                    ),
-                  )
+                  MyPlayer(
+                    X: X,
+                  ),
                 ],
               ),
             ),
@@ -59,12 +56,15 @@ class _HomePageState extends State<HomePage> {
               children: [
                 MyButton(
                   icon: Icons.arrow_back,
+                  function: moveLeft,
                 ),
                 MyButton(
                   icon: Icons.arrow_upward,
+                  function: fireMissle,
                 ),
                 MyButton(
                   icon: Icons.arrow_forward,
+                  function: moveRight,
                 ),
               ],
             ),
