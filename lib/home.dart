@@ -31,46 +31,50 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          flex: 3,
-          child: Container(
-            color: Colors.blue[100],
-            child: Center(
-              child: Stack(
+    return RawKeyboardListener(
+      focusNode: FocusNode(),
+      autofocus: true,
+      child: Column(
+        children: [
+          Expanded(
+            flex: 3,
+            child: Container(
+              color: Colors.blue[100],
+              child: Center(
+                child: Stack(
+                  children: [
+                    MyPlayer(
+                      X: X,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: Colors.brown[400],
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MyPlayer(
-                    X: X,
+                  MyButton(
+                    icon: Icons.arrow_back,
+                    function: moveLeft,
+                  ),
+                  MyButton(
+                    icon: Icons.arrow_upward,
+                    function: fireMissle,
+                  ),
+                  MyButton(
+                    icon: Icons.arrow_forward,
+                    function: moveRight,
                   ),
                 ],
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Container(
-            color: Colors.brown[400],
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                MyButton(
-                  icon: Icons.arrow_back,
-                  function: moveLeft,
-                ),
-                MyButton(
-                  icon: Icons.arrow_upward,
-                  function: fireMissle,
-                ),
-                MyButton(
-                  icon: Icons.arrow_forward,
-                  function: moveRight,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
