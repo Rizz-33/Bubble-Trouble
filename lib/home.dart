@@ -85,7 +85,10 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    MyMissile(),
+                    MyMissile(
+                      height: mH,
+                      mX: mX,
+                    ),
                     MyPlayer(
                       X: X,
                     ),
