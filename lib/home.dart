@@ -43,9 +43,13 @@ class _HomePageState extends State<HomePage> {
 
   void fireMissle() {
     Timer.periodic(Duration(milliseconds: 20), (timer){
-      setState(() {
-        mH += 10;
-      });
+      if (mH > MediaQuery.of(context).size.height * 3/4) {
+        timer.cancel();
+      } else {
+        setState(() {
+          mH += 10;
+        });
+      }
     });
   }
 
