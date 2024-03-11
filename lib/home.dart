@@ -54,6 +54,11 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void resetMissle () {
+    mX = X;
+    mH = 10;
+  }
+
   @override
   Widget build(BuildContext context) {
     return RawKeyboardListener(
