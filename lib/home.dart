@@ -1,6 +1,7 @@
 import 'package:bubble_trouble/button.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -34,6 +35,17 @@ class _HomePageState extends State<HomePage> {
     return RawKeyboardListener(
       focusNode: FocusNode(),
       autofocus: true,
+      onKey: (RawKeyEvent event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.arrowLeft)) {
+          moveLeft();
+        } else if (event.isKeyPressed(LogicalKeyboardKey.arrowRight)) {
+          moveRight();
+        }
+        if (event.isKeyPressed(LogicalKeyboardKey.space)) {
+          fireMissle();
+        }
+        
+      },
       child: Column(
         children: [
           Expanded(
