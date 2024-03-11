@@ -20,12 +20,15 @@ class _HomePageState extends State<HomePage> {
             child: Center(
               child: Stack(
                 children: [
-                  Container(
-                    alignment: Alignment(0, 1),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(24),
                     child: Container(
-                      color: Colors.pink,
-                      height: 50,
-                      width: 50,
+                      alignment: Alignment(0, 1),
+                      child: Container(
+                        color: Colors.pink,
+                        height: 50,
+                        width: 50,
+                      ),
                     ),
                   )
                 ],
