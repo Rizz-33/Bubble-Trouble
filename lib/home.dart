@@ -13,15 +13,19 @@ class _HomePageState extends State<HomePage> {
   double X = 0;
 
   void moveLeft() {
-
+    setState(() {
+      X -= 0.1;
+    });
   }
 
   void moveRight() {
-
+    setState(() {
+      X += 0.1;
+    });
   }
 
   void fireMissle() {
-    
+
   }
 
   @override
@@ -59,12 +63,15 @@ class _HomePageState extends State<HomePage> {
               children: [
                 MyButton(
                   icon: Icons.arrow_back,
+                  function: moveLeft,
                 ),
                 MyButton(
                   icon: Icons.arrow_upward,
+                  function: fireMissle,
                 ),
                 MyButton(
                   icon: Icons.arrow_forward,
+                  function: moveRight,
                 ),
               ],
             ),
