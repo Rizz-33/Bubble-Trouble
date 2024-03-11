@@ -17,6 +17,13 @@ class _HomePageState extends State<HomePage> {
           flex: 3,
           child: Container(
             color: Colors.blue[100],
+            child: Center(
+              child: Stack(
+                children: [
+                  
+                ],
+              ),
+            ),
           ),
         ),
         Expanded(
