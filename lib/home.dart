@@ -20,7 +20,14 @@ class _HomePageState extends State<HomePage> {
             child: Center(
               child: Stack(
                 children: [
-                  
+                  Container(
+                    alignment: Alignment(1, 0),
+                    child: Container(
+                      color: Colors.pink,
+                      height: 50,
+                      width: 50,
+                    ),
+                  )
                 ],
               ),
             ),
