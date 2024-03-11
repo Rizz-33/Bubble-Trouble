@@ -13,13 +13,14 @@ class _HomePageState extends State<HomePage> {
     return Column(
       children: [
         Expanded(
+          flex: 3,
           child: Container(
-            color: Colors.blue[400],
+            color: Colors.blue[300],
           ),
         ),
         Expanded(
           child: Container(
-            color: Colors.grey,
+            color: Colors.brown[400],
           ),
         ),
       ],
