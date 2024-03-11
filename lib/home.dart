@@ -16,7 +16,7 @@ class _HomePageState extends State<HomePage> {
 
   double X = 0;
   double mX = 0;
-  double mY = 0;
+  double mY = 1;
 
   void moveLeft() {
     setState(() {
@@ -40,7 +40,9 @@ class _HomePageState extends State<HomePage> {
 
   void fireMissle() {
     Timer.periodic(Duration(milliseconds: 100), (timer){
-
+      setState(() {
+        mY -= 0.1;
+      });
     });
   }
 
