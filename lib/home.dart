@@ -45,13 +45,13 @@ class _HomePageState extends State<HomePage> {
   void fireMissile() {
     if (midShot == false) {
       Timer.periodic(Duration(milliseconds: 20), (timer){
+        midShot = true;
+        setState(() {
+          mH += 10;
+        });
         if (mH > MediaQuery.of(context).size.height * 3/4) {
           resetMissile();
           timer.cancel();
-        } else {
-          setState(() {
-            mH += 10;
-          });
         }
       });
     }
