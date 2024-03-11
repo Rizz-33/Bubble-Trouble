@@ -14,8 +14,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  double X = 0;
-  double mX = 0;
+  static double X = 0;
+  double mX = X;
   double mY = 1;
   double mH = 10;
 
@@ -40,9 +40,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fireMissle() {
-    Timer.periodic(Duration(milliseconds: 100), (timer){
+    Timer.periodic(Duration(milliseconds: 20), (timer){
       setState(() {
-        mY -= 0.1;
+        mH += 10;
       });
     });
   }
@@ -75,9 +75,9 @@ class _HomePageState extends State<HomePage> {
                     Container(
                       alignment: Alignment(mX, mY),
                       child: Container(
-                        width: 30,
+                        width: 2,
                         height: mH,
-                        color: Colors.red,
+                        color: Colors.brown[300],
                       ),
                     ),
                     MyPlayer(
