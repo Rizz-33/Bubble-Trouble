@@ -14,12 +14,12 @@ class _HomePageState extends State<HomePage> {
       children: [
         Expanded(
           child: Container(
-            color: Colors.pink,
+            color: Colors.blue[400],
           ),
         ),
         Expanded(
           child: Container(
-            color: Colors.pink,
+            color: Colors.grey,
           ),
         ),
       ],
