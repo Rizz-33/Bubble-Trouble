@@ -40,7 +40,9 @@ class _HomePageState extends State<HomePage> {
       } else {
         X += 0.1;
       }
-      mX = X;
+      if (!midShot) {
+        mX = X;
+      }
     });
   }
 
