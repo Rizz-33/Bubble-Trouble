@@ -20,24 +20,24 @@ class _HomePageState extends State<HomePage> {
   double mH = 10;
 
   void moveLeft() {
-    mX = X;
     setState(() {
       if (X -0.1 < -1) {
 
       } else {
         X -= 0.1;
       }
+      mX = X;
     });
   }
 
   void moveRight() {
     setState(() {
-      mX = X;
       if (X +0.1 > 1) {
 
       } else {
         X += 0.1;
       }
+      mX = X;
     });
   }
 
