@@ -17,8 +17,8 @@ class _HomePageState extends State<HomePage> {
 
   static double X = 0;
   double mX = X;
-  double mY = 1;
   double mH = 10;
+  bool midShot = false;
 
   void moveLeft() {
     setState(() {
@@ -27,7 +27,9 @@ class _HomePageState extends State<HomePage> {
       } else {
         X -= 0.1;
       }
-      mX = X;
+      if (!midShot) {
+        mX = X;
+      }
     });
   }
 
@@ -43,16 +45,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fireMissile() {
-    Timer.periodic(Duration(milliseconds: 20), (timer){
-      if (mH > MediaQuery.of(context).size.height * 3/4) {
-        resetMissile();
-        timer.cancel();
-      } else {
+    if (midShot == false) {
+      Timer.periodic(Duration(milliseconds: 20), (timer){
+        midShot = true;
         setState(() {
           mH += 10;
         });
-      }
-    });
+        if (mH > MediaQuery.of(context).size.height * 3/4) {
+          resetMissile();
+          timer.cancel();
+          midShot = false;
+        }
+      });
+    }
   }
 
   void resetMissile () {
@@ -85,7 +90,10 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
-                    MyMissile(),
+                    MyMissile(
+                      height: mH,
+                      mX: mX,
+                    ),
                     MyPlayer(
                       X: X,
                     ),
