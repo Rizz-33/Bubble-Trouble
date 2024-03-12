@@ -6,6 +6,7 @@ import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 enum Direction { LEFT, RIGHT }
 
@@ -206,7 +207,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.grey[900],
+              color: Colors.grey[800],
               child: Stack(
                 children: [
                   MyBall(bX: bX, bY: bY),
@@ -219,20 +220,21 @@ class _HomePageState extends State<HomePage> {
                     child: Center(
                       child: Text(
                         'Bubble Trouble',
-                        style: TextStyle(
+                        style: GoogleFonts.pressStart2p(
                           decoration: TextDecoration.none,
-                          fontSize: 60.0,
+                          fontSize: 50.0,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
                           shadows: [
                             Shadow(
-                              blurRadius: 10.0,
+                              blurRadius: 1.0,
                               color: Colors.black,
                               offset: Offset(5.0, 5.0),
                             ),
                           ],
                         ),
                       ),
+
                     ),
                   ),
                 ],
@@ -242,7 +244,7 @@ class _HomePageState extends State<HomePage> {
 
           Expanded(
             child: Container(
-              color: Colors.grey[800],
+              color: Colors.grey[900],
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
