@@ -73,17 +73,34 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Color.fromARGB(255, 158, 238, 20),
           title: Center(
             child: Text(
-              "You've Lost!\nRestart the game...",
+              "You've Lost!",
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
+          content: Text("Do you want to restart the game?"),
+          actions: [
+            TextButton(
+              onPressed: () {
+                restartGame();
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "Restart",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
         );
       },
     );
   }
+
 
   void moveLeft() {
     setState(() {
@@ -127,6 +144,10 @@ class _HomePageState extends State<HomePage> {
           setState(() {
             score += 1;
           });
+        }
+        if (mH >= MediaQuery.of(context).size.height * 3 / 4) {
+          resetMissile();
+          timer.cancel();
         }
       });
     }
@@ -186,17 +207,39 @@ class _HomePageState extends State<HomePage> {
             flex: 3,
             child: Container(
               color: Colors.grey[900],
-              child: Center(
-                child: Stack(
-                  children: [
-                    MyBall(bX: bX, bY: bY),
-                    MyMissile(height: mH, mX: mX),
-                    MyPlayer(X: X),
-                  ],
-                ),
+              child: Stack(
+                children: [
+                  MyBall(bX: bX, bY: bY),
+                  MyMissile(height: mH, mX: mX),
+                  MyPlayer(X: X),
+                  Positioned(
+                    top: 50.0,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        'Bubble Trouble',
+                        style: TextStyle(
+                          decoration: TextDecoration.none,
+                          fontSize: 60.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10.0,
+                              color: Colors.black,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+
           Expanded(
             child: Container(
               color: Colors.grey[800],
@@ -206,6 +249,7 @@ class _HomePageState extends State<HomePage> {
                   Text(
                     'Score: $score',
                     style: const TextStyle(
+                      decoration: TextDecoration.none,
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
                       color: Color.fromARGB(255, 158, 238, 20),
