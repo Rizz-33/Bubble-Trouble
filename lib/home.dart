@@ -66,41 +66,52 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 158, 238, 20),
-          title: Center(
+void _showDialog() {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color.fromARGB(255, 209, 238, 20),
+        title: Center(
+          child: Text(
+            "You've Lost!",
+            style: GoogleFonts.pressStart2p(
+              decoration: TextDecoration.none,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        content: Text(
+          "Do you want to restart the game?",
+          style: GoogleFonts.pressStart2p(
+            decoration: TextDecoration.none,
+            fontSize: 8.0,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              restartGame();
+              Navigator.of(context).pop(); // Dismiss the dialog
+            },
             child: Text(
-              "You've Lost!",
-              style: TextStyle(
-                color: Colors.black,
+              "Restart",
+              style: GoogleFonts.pressStart2p(
+                decoration: TextDecoration.none,
+                fontSize: 10.0,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ),
-          content: Text("Do you want to restart the game?"),
-          actions: [
-            TextButton(
-              onPressed: () {
-                restartGame();
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                "Restart",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
+        ],
+      );
+    },
+  );
+}
 
 
   void moveLeft() {
@@ -224,6 +235,25 @@ class _HomePageState extends State<HomePage> {
                           decoration: TextDecoration.none,
                           fontSize: 50.0,
                           fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 209, 238, 20),
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: Colors.black,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'Score: $score',
+                        style: GoogleFonts.pressStart2p(
+                          decoration: TextDecoration.none,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                           color: Colors.white,
                           shadows: [
                             Shadow(
@@ -234,8 +264,6 @@ class _HomePageState extends State<HomePage> {
                           ],
                         ),
                       ),
-
-                    ),
                   ),
                 ],
               ),
@@ -248,16 +276,6 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'Score: $score',
-                    style: const TextStyle(
-                      decoration: TextDecoration.none,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color.fromARGB(255, 158, 238, 20),
-                    ),
-                  ),
-                  SizedBox(height: 30,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
