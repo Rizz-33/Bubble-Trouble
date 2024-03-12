@@ -9,11 +9,14 @@ class MyBall extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 10,
-      height: 10,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: Colors.black,
+      alignment: Alignment(bX, bY),
+      child: Container(
+        width: 20,
+        height: 20,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: Colors.black,
+        ),
       ),
     );
   }
