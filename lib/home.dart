@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.black,
+              color:Colors.grey[900],
               child: Center(
                 child: Stack(
                   children: [
