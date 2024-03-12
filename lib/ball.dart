@@ -12,10 +12,13 @@ class MyBall extends StatelessWidget {
   Widget build(BuildContext context) {
     Color randomColor() {
       Random random = Random();
+      int red = 100 + random.nextInt(156);
+      int green = 100 + random.nextInt(156);
+      int blue = 100 + random.nextInt(156);
       return Color.fromRGBO(
-        random.nextInt(256),
-        random.nextInt(256),
-        random.nextInt(256),
+        red,
+        green,
+        blue,
         1.0,
       );
     }
