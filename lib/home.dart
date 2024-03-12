@@ -8,23 +8,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
-enum direction {LEFT, RIGHT}
+enum Direction { LEFT, RIGHT }
 
 class _HomePageState extends State<HomePage> {
-
-  static double X = 0;
-  double mX = X;
+  double X = 0;
+  double mX = 0;
   double mH = 10;
   bool midShot = false;
   double bX = 0.5;
   double bY = 1;
-  var ballDirection = direction.LEFT;
+  var ballDirection = Direction.LEFT;
 
   void startGame() {
     double time = 0;
@@ -41,17 +40,16 @@ class _HomePageState extends State<HomePage> {
         bY = heightToCoordinate(height);
       });
 
-      
-      if(bX -0.005 < -1) {
-        ballDirection = direction.RIGHT;
-      } else if (bX +0.005 > 1){
-        ballDirection = direction.LEFT;
+      if (bX - 0.005 < -1) {
+        ballDirection = Direction.RIGHT;
+      } else if (bX + 0.005 > 1) {
+        ballDirection = Direction.LEFT;
       }
-      if (ballDirection == direction.LEFT) {
+      if (ballDirection == Direction.LEFT) {
         setState(() {
           bX -= 0.005;
         });
-      } else if (ballDirection == direction.RIGHT) {
+      } else if (ballDirection == Direction.RIGHT) {
         setState(() {
           bX += 0.005;
         });
@@ -61,7 +59,7 @@ class _HomePageState extends State<HomePage> {
         timer.cancel();
         _showDialog();
       }
-      
+
       time += 0.1;
     });
   }
@@ -72,16 +70,23 @@ class _HomePageState extends State<HomePage> {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Color.fromARGB(255, 187, 12, 0),
-          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
+          title: Center(
+            child: Text(
+              "You've Lost!\nRestart the game...",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
         );
-      }
+      },
     );
   }
 
   void moveLeft() {
     setState(() {
-      if (X -0.1 < -1) {
-
+      if (X - 0.1 < -1) {
       } else {
         X -= 0.1;
       }
@@ -93,8 +98,7 @@ class _HomePageState extends State<HomePage> {
 
   void moveRight() {
     setState(() {
-      if (X +0.1 > 1) {
-
+      if (X + 0.1 > 1) {
       } else {
         X += 0.1;
       }
@@ -106,16 +110,16 @@ class _HomePageState extends State<HomePage> {
 
   void fireMissile() {
     if (midShot == false) {
-      Timer.periodic(Duration(milliseconds: 20), (timer){
+      Timer.periodic(Duration(milliseconds: 20), (timer) {
         midShot = true;
         setState(() {
           mH += 10;
         });
-        if (mH > MediaQuery.of(context).size.height * 3/4) {
+        if (mH > MediaQuery.of(context).size.height * 3 / 4) {
           resetMissile();
           timer.cancel();
         }
-        if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
+        if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03) {
           resetMissile();
           bX = 5;
           timer.cancel();
@@ -126,11 +130,11 @@ class _HomePageState extends State<HomePage> {
 
   double heightToCoordinate(double height) {
     double totalH = MediaQuery.of(context).size.height * 3 / 4;
-    double position = 1 -2 * height / totalH;
+    double position = 1 - 2 * height / totalH;
     return position;
   }
 
-  void resetMissile () {
+  void resetMissile() {
     mX = X;
     mH = 0;
     midShot = false;
@@ -152,7 +156,7 @@ class _HomePageState extends State<HomePage> {
       midShot = false;
       bX = 0.5;
       bY = 1;
-      ballDirection = direction.LEFT;
+      ballDirection = Direction.LEFT;
     });
   }
 
@@ -170,25 +174,19 @@ class _HomePageState extends State<HomePage> {
         if (event.isKeyPressed(LogicalKeyboardKey.space)) {
           fireMissile();
         }
-        
       },
       child: Column(
         children: [
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.black,
+              color: Colors.grey[900],
               child: Center(
                 child: Stack(
                   children: [
                     MyBall(bX: bX, bY: bY),
-                    MyMissile(
-                      height: mH,
-                      mX: mX,
-                    ),
-                    MyPlayer(
-                      X: X,
-                    ),
+                    MyMissile(height: mH, mX: mX),
+                    MyPlayer(X: X),
                   ],
                 ),
               ),
@@ -200,26 +198,11 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  MyButton(
-                    icon: Icons.play_arrow,
-                    function: startGame,
-                  ),
-                  MyButton(
-                    icon: Icons.arrow_back,
-                    function: moveLeft,
-                  ),
-                  MyButton(
-                    icon: Icons.arrow_upward,
-                    function: fireMissile,
-                  ),
-                  MyButton(
-                    icon: Icons.arrow_forward,
-                    function: moveRight,
-                  ),
-                  MyButton(
-                    icon: Icons.restart_alt,
-                    function: restartGame,
-                  ),
+                  MyButton(icon: Icons.play_arrow, function: startGame),
+                  MyButton(icon: Icons.arrow_back, function: moveLeft),
+                  MyButton(icon: Icons.arrow_upward, function: fireMissile),
+                  MyButton(icon: Icons.arrow_forward, function: moveRight),
+                  MyButton(icon: Icons.restart_alt, function: restartGame),
                 ],
               ),
             ),

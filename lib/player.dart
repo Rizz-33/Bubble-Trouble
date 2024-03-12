@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MyPlayer extends StatelessWidget {
+  final double X;
 
-  final X;
-
-  const MyPlayer({this.X});
+  const MyPlayer({required this.X});
 
   @override
   Widget build(BuildContext context) {
@@ -12,10 +11,11 @@ class MyPlayer extends StatelessWidget {
       alignment: Alignment(X, 1),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
-        child: Container(
-          color: Colors.pink,
-          height: 50,
-          width: 50,
+        child: Image.asset(
+          'lib/images/slime.png',
+          height: 80,
+          width: 80,
+          fit: BoxFit.fill,
         ),
       ),
     );
