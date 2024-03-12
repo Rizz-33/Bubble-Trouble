@@ -36,25 +36,28 @@ class _HomePageState extends State<HomePage> {
       if (height < 0) {
         time = 0;
       }
+
       setState(() {
         bY = heightToCoordinate(height);
       });
-      time += 0.1;
+
       
-      if(bX -0.02 < -1) {
+      if(bX -0.005 < -1) {
         ballDirection = direction.RIGHT;
-      } else if (bX +0.02 > 1){
+      } else if (bX +0.005 > 1){
         ballDirection = direction.LEFT;
       }
       if (ballDirection == direction.LEFT) {
         setState(() {
-          bX -= 0.02;
+          bX -= 0.005;
         });
       } else if (ballDirection == direction.RIGHT) {
         setState(() {
-          bX += 0.02;
+          bX += 0.005;
         });
       }
+      
+      time += 0.1;
     });
   }
 
