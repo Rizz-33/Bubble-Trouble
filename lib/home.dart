@@ -120,7 +120,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   bool playerOut() {
-    if ((bX - X).abs() < 0.05) {
+    if ((bX - X).abs() < 0.05 && bY > 0.95) {
       return true;
     } else {
       return false;
