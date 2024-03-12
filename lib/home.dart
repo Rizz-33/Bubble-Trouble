@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
           timer.cancel();
           midShot = false;
         }
-        if (bY > heightToCoordinate(mH)  && (bX - mX).abs() < 0.3){
+        if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
           resetMissile();
           bY = 5;
           timer.cancel();
