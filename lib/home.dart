@@ -30,9 +30,9 @@ class _HomePageState extends State<HomePage> {
     double time = 0;
     double height = 0;
     double velocity = 50;
-    
+
     Timer.periodic(Duration(milliseconds: 10), (timer) {
-      height = -5 * time * time + 50 * time;
+      height = -5 * time * time + velocity * time;
       if (height < 0) {
         time = 0;
       }
@@ -40,20 +40,21 @@ class _HomePageState extends State<HomePage> {
         bY = heightToCoordinate(height);
       });
       time += 0.1;
-      // if(bX -0.02 < -1) {
-      //   ballDirection = direction.RIGHT;
-      // } else if (bX +0.02 > 1){
-      //   ballDirection = direction.LEFT;
-      // }
-      // if (ballDirection == direction.LEFT) {
-      //   setState(() {
-      //     bX -= 0.02;
-      //   });
-      // } else if (ballDirection == direction.RIGHT) {
-      //   setState(() {
-      //     bX += 0.02;
-      //   });
-      // }
+      
+      if(bX -0.02 < -1) {
+        ballDirection = direction.RIGHT;
+      } else if (bX +0.02 > 1){
+        ballDirection = direction.LEFT;
+      }
+      if (ballDirection == direction.LEFT) {
+        setState(() {
+          bX -= 0.02;
+        });
+      } else if (ballDirection == direction.RIGHT) {
+        setState(() {
+          bX += 0.02;
+        });
+      }
     });
   }
 
