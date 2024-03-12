@@ -97,7 +97,6 @@ class _HomePageState extends State<HomePage> {
         if (mH > MediaQuery.of(context).size.height * 3/4) {
           resetMissile();
           timer.cancel();
-          midShot = false;
         }
         if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
           resetMissile();
@@ -116,7 +115,8 @@ class _HomePageState extends State<HomePage> {
 
   void resetMissile () {
     mX = X;
-    mH = 10;
+    mH = 0;
+    midShot = false;
   }
 
   @override
