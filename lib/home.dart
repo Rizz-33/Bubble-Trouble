@@ -23,25 +23,32 @@ class _HomePageState extends State<HomePage> {
   double mH = 10;
   bool midShot = false;
   double bX = 0.5;
-  double bY = 0;
+  double bY = 1;
   var ballDirection = direction.LEFT;
 
   void startGame() {
+    double time = 0;
+    double height = 0;
     Timer.periodic(Duration(milliseconds: 50), (timer) {
-      if(bX -0.02 < -1) {
-        ballDirection = direction.RIGHT;
-      } else if (bX +0.02 > -1){
-        ballDirection = direction.LEFT;
-      }
-      if (ballDirection == direction.LEFT) {
-        setState(() {
-          bX -= 0.02;
-        });
-      } else if (ballDirection == direction.RIGHT) {
-        setState(() {
-          bX += 0.02;
-        });
-      }
+      height = -5 * time * time + 100 * time;
+      setState(() {
+        bY = heightToCoordinate(height);
+      });
+      time += 0.1;
+      // if(bX -0.02 < -1) {
+      //   ballDirection = direction.RIGHT;
+      // } else if (bX +0.02 > 1){
+      //   ballDirection = direction.LEFT;
+      // }
+      // if (ballDirection == direction.LEFT) {
+      //   setState(() {
+      //     bX -= 0.02;
+      //   });
+      // } else if (ballDirection == direction.RIGHT) {
+      //   setState(() {
+      //     bX += 0.02;
+      //   });
+      // }
     });
   }
 
@@ -83,8 +90,19 @@ class _HomePageState extends State<HomePage> {
           timer.cancel();
           midShot = false;
         }
+        if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
+          resetMissile();
+          bY = 5;
+          timer.cancel();
+        }
       });
     }
+  }
+
+  double heightToCoordinate(double height) {
+    double totalH = MediaQuery.of(context).size.height * 3 / 4;
+    double missileY = 1 -2 * height / totalH;
+    return missileY;
   }
 
   void resetMissile () {
