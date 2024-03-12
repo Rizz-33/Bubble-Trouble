@@ -109,8 +109,8 @@ class _HomePageState extends State<HomePage> {
 
   double heightToCoordinate(double height) {
     double totalH = MediaQuery.of(context).size.height * 3 / 4;
-    double missileY = 1 -2 * height / totalH;
-    return missileY;
+    double position = 1 -2 * height / totalH;
+    return position;
   }
 
   void resetMissile () {
