@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class MyBall extends StatelessWidget {
@@ -8,6 +10,16 @@ class MyBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color randomColor() {
+      Random random = Random();
+      return Color.fromRGBO(
+        random.nextInt(256),
+        random.nextInt(256),
+        random.nextInt(256),
+        1.0,
+      );
+    }
+
     return Container(
       alignment: Alignment(bX, bY),
       child: Container(
@@ -15,7 +27,7 @@ class MyBall extends StatelessWidget {
         height: 20,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: Colors.black,
+          color: randomColor(),
         ),
       ),
     );
