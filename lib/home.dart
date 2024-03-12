@@ -56,9 +56,26 @@ class _HomePageState extends State<HomePage> {
           bX += 0.005;
         });
       }
+
+      if (playerOut()) {
+        timer.cancel();
+        _showDialog();
+      }
       
       time += 0.1;
     });
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Colors.red,
+          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white),)),
+        );
+      }
+    );
   }
 
   void moveLeft() {
@@ -127,6 +144,18 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void restartGame() {
+    setState(() {
+      X = 0;
+      mX = X;
+      mH = 10;
+      midShot = false;
+      bX = 0.5;
+      bY = 1;
+      ballDirection = direction.LEFT;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return RawKeyboardListener(
@@ -186,6 +215,10 @@ class _HomePageState extends State<HomePage> {
                   MyButton(
                     icon: Icons.arrow_forward,
                     function: moveRight,
+                  ),
+                  MyButton(
+                    icon: Icons.restart_alt,
+                    function: restartGame,
                   ),
                 ],
               ),
