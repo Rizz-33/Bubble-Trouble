@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.red,
-          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white),)),
+          backgroundColor: Color.fromARGB(255, 187, 12, 0),
+          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
         );
       }
     );
@@ -177,7 +177,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.blue[100],
+              color: Colors.black,
               child: Center(
                 child: Stack(
                   children: [
@@ -196,7 +196,7 @@ class _HomePageState extends State<HomePage> {
           ),
           Expanded(
             child: Container(
-              color: Colors.brown[400],
+              color: Colors.grey[800],
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
