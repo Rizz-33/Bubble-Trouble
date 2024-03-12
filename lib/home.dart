@@ -23,6 +23,10 @@ class _HomePageState extends State<HomePage> {
   double bX = 0.5;
   double bY = 0;
 
+  void startGame() {
+    
+  }
+
   void moveLeft() {
     setState(() {
       if (X -0.1 < -1) {
@@ -115,8 +119,8 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MyButton(
-                    icon: Icons.arrow_back,
-                    function: moveLeft,
+                    icon: Icons.play_arrow,
+                    function: startGame,
                   ),
                   MyButton(
                     icon: Icons.arrow_upward,
