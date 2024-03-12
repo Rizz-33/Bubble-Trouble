@@ -24,12 +24,24 @@ class _HomePageState extends State<HomePage> {
   bool midShot = false;
   double bX = 0.5;
   double bY = 0;
+  var ballDirection = direction.LEFT;
 
   void startGame() {
     Timer.periodic(Duration(milliseconds: 50), (timer) {
-      setState(() {
-        bX -= 0.03;
-      });
+      if(bX -0.02 < -1) {
+        ballDirection = direction.RIGHT;
+      } else if (bX +0.02 > -1){
+        ballDirection = direction.LEFT;
+      }
+      if (ballDirection == direction.LEFT) {
+        setState(() {
+          bX -= 0.02;
+        });
+      } else if (ballDirection == direction.RIGHT) {
+        setState(() {
+          bX += 0.02;
+        });
+      }
     });
   }
 
