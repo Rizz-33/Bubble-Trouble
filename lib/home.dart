@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.red,
-          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white),)),
+          backgroundColor: Color.fromARGB(255, 187, 12, 0),
+          title: Center(child: Text("You've Lost!\nRestart the game...", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),)),
         );
       }
     );
