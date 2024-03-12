@@ -8,6 +8,13 @@ class MyBall extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      width: 10,
+      height: 10,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.black,
+      ),
+    );
   }
 }
