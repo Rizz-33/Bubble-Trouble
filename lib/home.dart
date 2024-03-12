@@ -71,8 +71,8 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Colors.yellow,
-          title: Text("Game Over!"),
+          backgroundColor: Colors.red,
+          title: Center(child: Text("Game Over!", style: TextStyle(color: Colors.white),)),
         );
       }
     );
