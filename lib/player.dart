@@ -12,9 +12,9 @@ class MyPlayer extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
         child: Image.asset(
-          'assets/images/mushroom.png', // Update the path accordingly
-          height: 50,
-          width: 50,
+          'lib/images/slime.png',
+          height: 80,
+          width: 80,
           fit: BoxFit.fill,
         ),
       ),
