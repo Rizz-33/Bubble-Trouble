@@ -56,6 +56,11 @@ class _HomePageState extends State<HomePage> {
           bX += 0.005;
         });
       }
+
+      if (playerOut()) {
+        timer.cancel();
+        print("Dead!");
+      }
       
       time += 0.1;
     });
