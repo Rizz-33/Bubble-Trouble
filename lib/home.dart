@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bubble_trouble/ball.dart';
 import 'package:bubble_trouble/button.dart';
 import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
@@ -13,6 +14,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+enum direction {LEFT, RIGHT}
+
 class _HomePageState extends State<HomePage> {
 
   static double X = 0;
@@ -21,6 +24,26 @@ class _HomePageState extends State<HomePage> {
   bool midShot = false;
   double bX = 0.5;
   double bY = 0;
+  var ballDirection = direction.LEFT;
+
+  void startGame() {
+    Timer.periodic(Duration(milliseconds: 50), (timer) {
+      if(bX -0.02 < -1) {
+        ballDirection = direction.RIGHT;
+      } else if (bX +0.02 > -1){
+        ballDirection = direction.LEFT;
+      }
+      if (ballDirection == direction.LEFT) {
+        setState(() {
+          bX -= 0.02;
+        });
+      } else if (ballDirection == direction.RIGHT) {
+        setState(() {
+          bX += 0.02;
+        });
+      }
+    });
+  }
 
   void moveLeft() {
     setState(() {
@@ -94,6 +117,7 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
+                    MyBall(bX: bX, bY: bY),
                     MyMissile(
                       height: mH,
                       mX: mX,
@@ -112,6 +136,10 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
+                  MyButton(
+                    icon: Icons.play_arrow,
+                    function: startGame,
+                  ),
                   MyButton(
                     icon: Icons.arrow_back,
                     function: moveLeft,
