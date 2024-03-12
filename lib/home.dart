@@ -119,6 +119,14 @@ class _HomePageState extends State<HomePage> {
     midShot = false;
   }
 
+  bool playerOut() {
+    if ((bX - X).abs() < 0.05) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return RawKeyboardListener(
