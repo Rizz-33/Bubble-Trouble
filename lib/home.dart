@@ -6,6 +6,9 @@ import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+enum Direction { LEFT, RIGHT }
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -13,8 +16,6 @@ class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
-enum Direction { LEFT, RIGHT }
 
 class _HomePageState extends State<HomePage> {
   double X = 0;
@@ -24,6 +25,7 @@ class _HomePageState extends State<HomePage> {
   double bX = 0.5;
   double bY = 1;
   var ballDirection = Direction.LEFT;
+  int score = 0;
 
   void startGame() {
     double time = 0;
@@ -64,25 +66,53 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
-  void _showDialog() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 187, 12, 0),
-          title: Center(
+void _showDialog() {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        backgroundColor: Color.fromARGB(255, 209, 238, 20),
+        title: Center(
+          child: Text(
+            "You've Lost!",
+            style: GoogleFonts.pressStart2p(
+              decoration: TextDecoration.none,
+              fontSize: 20.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        content: Text(
+          "Do you want to restart the game?",
+          style: GoogleFonts.pressStart2p(
+            decoration: TextDecoration.none,
+            fontSize: 8.0,
+            color: Colors.black,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              restartGame();
+              Navigator.of(context).pop(); // Dismiss the dialog
+            },
             child: Text(
-              "You've Lost!\nRestart the game...",
-              style: TextStyle(
-                color: Colors.white,
+              "Restart",
+              style: GoogleFonts.pressStart2p(
+                decoration: TextDecoration.none,
+                fontSize: 10.0,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
             ),
           ),
-        );
-      },
-    );
-  }
+        ],
+      );
+    },
+  );
+}
+
 
   void moveLeft() {
     setState(() {
@@ -123,6 +153,13 @@ class _HomePageState extends State<HomePage> {
           resetMissile();
           bX = 5;
           timer.cancel();
+          setState(() {
+            score += 1;
+          });
+        }
+        if (mH >= MediaQuery.of(context).size.height * 3 / 4) {
+          resetMissile();
+          timer.cancel();
         }
       });
     }
@@ -157,6 +194,7 @@ class _HomePageState extends State<HomePage> {
       bX = 0.5;
       bY = 1;
       ballDirection = Direction.LEFT;
+      score = 0;
     });
   }
 
@@ -180,29 +218,74 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 3,
             child: Container(
-              color: Colors.grey[900],
-              child: Center(
-                child: Stack(
-                  children: [
-                    MyBall(bX: bX, bY: bY),
-                    MyMissile(height: mH, mX: mX),
-                    MyPlayer(X: X),
-                  ],
-                ),
+              color: Colors.grey[800],
+              child: Stack(
+                children: [
+                  MyBall(bX: bX, bY: bY),
+                  MyMissile(height: mH, mX: mX),
+                  MyPlayer(X: X),
+                  Positioned(
+                    top: 50.0,
+                    left: 0,
+                    right: 0,
+                    child: Center(
+                      child: Text(
+                        'Bubble Trouble',
+                        style: GoogleFonts.pressStart2p(
+                          decoration: TextDecoration.none,
+                          fontSize: 50.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 209, 238, 20),
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: Colors.black,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Center(
+                    child: Text(
+                      'Score: $score',
+                        style: GoogleFonts.pressStart2p(
+                          decoration: TextDecoration.none,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 1.0,
+                              color: Colors.black,
+                              offset: Offset(5.0, 5.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                  ),
+                ],
               ),
             ),
           ),
+
           Expanded(
             child: Container(
-              color: Colors.grey[800],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              color: Colors.grey[900],
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MyButton(icon: Icons.play_arrow, function: startGame),
-                  MyButton(icon: Icons.arrow_back, function: moveLeft),
-                  MyButton(icon: Icons.arrow_upward, function: fireMissile),
-                  MyButton(icon: Icons.arrow_forward, function: moveRight),
-                  MyButton(icon: Icons.restart_alt, function: restartGame),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyButton(icon: Icons.play_arrow, function: startGame),
+                      MyButton(icon: Icons.arrow_back, function: moveLeft),
+                      MyButton(icon: Icons.arrow_upward, function: fireMissile),
+                      MyButton(icon: Icons.arrow_forward, function: moveRight),
+                      MyButton(icon: Icons.restart_alt, function: restartGame),
+                    ],
+                  ),
                 ],
               ),
             ),

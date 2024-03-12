@@ -31,6 +31,10 @@ class MyBall extends StatelessWidget {
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           color: randomColor(),
+          border: Border.all(
+            color: Colors.black,
+            width: 2.0,
+          ),
         ),
       ),
     );
