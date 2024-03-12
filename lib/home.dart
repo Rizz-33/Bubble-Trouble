@@ -29,8 +29,10 @@ class _HomePageState extends State<HomePage> {
   void startGame() {
     double time = 0;
     double height = 0;
+    double velocity = 50;
+    
     Timer.periodic(Duration(milliseconds: 10), (timer) {
-      height = -5 * time * time + 100 * time;
+      height = -5 * time * time + 50 * time;
       if (height < 0) {
         time = 0;
       }
