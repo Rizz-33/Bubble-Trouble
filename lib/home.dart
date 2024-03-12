@@ -97,11 +97,10 @@ class _HomePageState extends State<HomePage> {
         if (mH > MediaQuery.of(context).size.height * 3/4) {
           resetMissile();
           timer.cancel();
-          midShot = false;
         }
         if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
           resetMissile();
-          bY = 5;
+          bX = 5;
           timer.cancel();
         }
       });
@@ -110,13 +109,22 @@ class _HomePageState extends State<HomePage> {
 
   double heightToCoordinate(double height) {
     double totalH = MediaQuery.of(context).size.height * 3 / 4;
-    double missileY = 1 -2 * height / totalH;
-    return missileY;
+    double position = 1 -2 * height / totalH;
+    return position;
   }
 
   void resetMissile () {
     mX = X;
-    mH = 10;
+    mH = 0;
+    midShot = false;
+  }
+
+  bool playerOut() {
+    if ((bX - X).abs() < 0.05 && bY > 0.95) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   @override
