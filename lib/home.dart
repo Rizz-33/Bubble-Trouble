@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
         }
         if (bY > heightToCoordinate(mH) && (bX - mX).abs() < 0.03){
           resetMissile();
-          bY = 5;
+          bX = 5;
           timer.cancel();
         }
       });
