@@ -7,14 +7,14 @@ import 'package:bubble_trouble/player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+enum Direction { LEFT, RIGHT }
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
-
-enum Direction { LEFT, RIGHT }
 
 class _HomePageState extends State<HomePage> {
   double X = 0;
@@ -24,6 +24,7 @@ class _HomePageState extends State<HomePage> {
   double bX = 0.5;
   double bY = 1;
   var ballDirection = Direction.LEFT;
+  int score = 0;
 
   void startGame() {
     double time = 0;
@@ -69,12 +70,12 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: Color.fromARGB(255, 187, 12, 0),
+          backgroundColor: Color.fromARGB(255, 158, 238, 20),
           title: Center(
             child: Text(
               "You've Lost!\nRestart the game...",
               style: TextStyle(
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -123,6 +124,9 @@ class _HomePageState extends State<HomePage> {
           resetMissile();
           bX = 5;
           timer.cancel();
+          setState(() {
+            score += 1;
+          });
         }
       });
     }
@@ -157,6 +161,7 @@ class _HomePageState extends State<HomePage> {
       bX = 0.5;
       bY = 1;
       ballDirection = Direction.LEFT;
+      score = 0;
     });
   }
 
@@ -195,14 +200,28 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Container(
               color: Colors.grey[800],
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  MyButton(icon: Icons.play_arrow, function: startGame),
-                  MyButton(icon: Icons.arrow_back, function: moveLeft),
-                  MyButton(icon: Icons.arrow_upward, function: fireMissile),
-                  MyButton(icon: Icons.arrow_forward, function: moveRight),
-                  MyButton(icon: Icons.restart_alt, function: restartGame),
+                  Text(
+                    'Score: $score',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromARGB(255, 158, 238, 20),
+                    ),
+                  ),
+                  SizedBox(height: 30,),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      MyButton(icon: Icons.play_arrow, function: startGame),
+                      MyButton(icon: Icons.arrow_back, function: moveLeft),
+                      MyButton(icon: Icons.arrow_upward, function: fireMissile),
+                      MyButton(icon: Icons.arrow_forward, function: moveRight),
+                      MyButton(icon: Icons.restart_alt, function: restartGame),
+                    ],
+                  ),
                 ],
               ),
             ),
