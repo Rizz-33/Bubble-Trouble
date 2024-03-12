@@ -59,11 +59,22 @@ class _HomePageState extends State<HomePage> {
 
       if (playerOut()) {
         timer.cancel();
-        print("Dead!");
+        _showDialog();
       }
       
       time += 0.1;
     });
+  }
+
+  void _showDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Game Over!"),
+        );
+      }
+    );
   }
 
   void moveLeft() {
