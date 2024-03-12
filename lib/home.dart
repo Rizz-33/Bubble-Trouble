@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:bubble_trouble/ball.dart';
 import 'package:bubble_trouble/button.dart';
 import 'package:bubble_trouble/missile.dart';
 import 'package:bubble_trouble/player.dart';
@@ -94,6 +95,7 @@ class _HomePageState extends State<HomePage> {
               child: Center(
                 child: Stack(
                   children: [
+                    MyBall(bX: bX, bY: bY),
                     MyMissile(
                       height: mH,
                       mX: mX,
