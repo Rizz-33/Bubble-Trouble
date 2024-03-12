@@ -30,7 +30,7 @@ class _HomePageState extends State<HomePage> {
     Timer.periodic(Duration(milliseconds: 50), (timer) {
       if(bX -0.02 < -1) {
         ballDirection = direction.RIGHT;
-      } else if (bX +0.02 > -1){
+      } else if (bX +0.02 > 1){
         ballDirection = direction.LEFT;
       }
       if (ballDirection == direction.LEFT) {
