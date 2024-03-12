@@ -14,6 +14,8 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
+enum direction {LEFT, RIGHT}
+
 class _HomePageState extends State<HomePage> {
 
   static double X = 0;
@@ -24,7 +26,11 @@ class _HomePageState extends State<HomePage> {
   double bY = 0;
 
   void startGame() {
-    
+    Timer.periodic(Duration(milliseconds: 50), (timer) {
+      setState(() {
+        bX -= 0.03;
+      });
+    });
   }
 
   void moveLeft() {
@@ -121,6 +127,10 @@ class _HomePageState extends State<HomePage> {
                   MyButton(
                     icon: Icons.play_arrow,
                     function: startGame,
+                  ),
+                  MyButton(
+                    icon: Icons.arrow_back,
+                    function: moveLeft,
                   ),
                   MyButton(
                     icon: Icons.arrow_upward,
