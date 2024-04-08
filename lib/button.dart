@@ -14,7 +14,7 @@ class MyButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         child: Container(
           color: Colors.grey[800],
-          width: 50,
+          width: 51,
           height: 50,
           child: Center(child: Icon(icon, color: Colors.white,)),
         ),
